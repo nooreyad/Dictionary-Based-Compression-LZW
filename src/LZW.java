@@ -42,9 +42,11 @@ public class LZW extends JFrame{
             dictionary.add(pair);
             String coded = search.substring(0, search.length()-1);
             compressionCodes.add(dictionary.get(coded));
-            int code = dictionary.get(coded);
-            Pair pair2 = new Pair(code, coded);
-            dicDecompress.add(pair2);
+            if(dictionary.get(coded) != null){
+                int code = dictionary.get(coded);
+                Pair pair2 = new Pair(code, coded);
+                dicDecompress.add(pair2);
+            }
             i--;
         }
         try {
@@ -82,7 +84,6 @@ public class LZW extends JFrame{
             File file2 = new File(path2);
             FileWriter myWriter = new FileWriter(file2);
             for (int code : codes) {
-                System.out.println(code);
                String text = dicDecompress.get(code);
                 myWriter.write(text);
             }
