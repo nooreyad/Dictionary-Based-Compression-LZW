@@ -9,4 +9,7 @@ public class DictionaryDecompress {
     public String get(Integer code){
         return dic.get(code);
     }
+    public void clear(){
+        dic.clear();
+    }
 }

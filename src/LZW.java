@@ -25,6 +25,7 @@ public class LZW extends JFrame{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        dictionary.initializeDictionary();
         ArrayList<Integer> compressionCodes = new ArrayList<>();
         int ptr = 128;
         for (int i = 0; i < data.length(); i++){
@@ -75,7 +76,9 @@ public class LZW extends JFrame{
             int ch;
             while ((ch = reader.read()) != -1) {
                 codes.add(ch);
+                System.out.print(ch + " ");
             }
+            System.out.println();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -84,14 +87,20 @@ public class LZW extends JFrame{
             File file2 = new File(path2);
             FileWriter myWriter = new FileWriter(file2);
             for (int code : codes) {
+                System.out.print(code + " ");
                String text = dicDecompress.get(code);
-                myWriter.write(text);
+               if(text != null) {
+                   System.out.print(text + " ");
+                   myWriter.write(text);
+               }
             }
             myWriter.close();
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+        dictionary.clear();
+        dicDecompress.clear();
     }
     public LZW() {
         compressButton.addActionListener(new ActionListener() {

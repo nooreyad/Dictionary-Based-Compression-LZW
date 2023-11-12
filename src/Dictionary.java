@@ -5,7 +5,7 @@ import java.util.Map;
 public class Dictionary {
     Map<String, Integer> dic = new HashMap<>();
 
-    Dictionary(){
+    public void initializeDictionary(){
         for (int i = 0; i < 128; i++){
             String s = "";
             s += (char)i;
@@ -17,5 +17,8 @@ public class Dictionary {
     }
     public void add(Pair p){
         dic.put(p.getStr(), p.getNumber());
+    }
+    public void clear(){
+        dic.clear();
     }
 }
