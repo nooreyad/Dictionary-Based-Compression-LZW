@@ -76,7 +76,6 @@ public class LZW extends JFrame{
             int ch;
             while ((ch = reader.read()) != -1) {
                 codes.add(ch);
-                System.out.print(ch + " ");
             }
             System.out.println();
         } catch (IOException e) {
@@ -87,10 +86,8 @@ public class LZW extends JFrame{
             File file2 = new File(path2);
             FileWriter myWriter = new FileWriter(file2);
             for (int code : codes) {
-                System.out.print(code + " ");
                String text = dicDecompress.get(code);
                if(text != null) {
-                   System.out.print(text + " ");
                    myWriter.write(text);
                }
             }
